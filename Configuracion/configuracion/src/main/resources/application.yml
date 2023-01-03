@@ -8,5 +8,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/atarax-ia/Microservicios/tree/main/Configuracion/configuracion/config_files
+          uri: https://github.com/atarax-ia/Microservicios.git
+          skip-ssl-validation: true
+          default-label: main
+          searchPaths: config_files
           clone-on-start: true
