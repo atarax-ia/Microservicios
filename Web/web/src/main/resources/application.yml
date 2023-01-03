@@ -1,5 +1,5 @@
-server:
-  port: 8000
+#server:
+#  port: 8000
 
 app:
   ia:
@@ -11,10 +11,17 @@ app:
         localidad:
           endpoint: http://localhost:8200/
           type: remote # in-memory, remote
+
 spring:
   application:
     name: web
-# swagger-ui custom path
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
+  cloud:
+    config:
+      uri: http://localhost:8300
+      user: root
+      password: s3cr3t
+
+## swagger-ui custom path
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui.html
