@@ -1,0 +1,18 @@
+server:
+  port: 8000
+
+app:
+  ia:
+    atarax:
+      services:
+        provincia:
+          endpoint: http://localhost:8100/
+          type: remote # in-memory, remote
+        localidad:
+          endpoint: http://localhost:8200/
+          type: remote # in-memory, remote
+
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
