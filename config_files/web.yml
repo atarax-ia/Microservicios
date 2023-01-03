@@ -1,3 +1,6 @@
+server:
+  port: 8000
+
 app:
   ia:
     atarax:
@@ -9,6 +12,12 @@ app:
           endpoint: http://localhost:8200/
           type: remote # in-memory, remote
 
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8400
 
 # swagger-ui custom path
 springdoc:

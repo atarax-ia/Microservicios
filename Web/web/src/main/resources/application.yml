@@ -1,13 +1,6 @@
-server:
-  port: 8000
-
 spring:
   application:
     name: web
   cloud:
     config:
       profile: default
-  boot:
-    admin:
-      client:
-        url: http://localhost:8400
