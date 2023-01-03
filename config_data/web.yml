@@ -11,7 +11,9 @@ app:
         localidad:
           endpoint: http://localhost:8200/
           type: remote # in-memory, remote
-
+spring:
+  application:
+    name: web
 # swagger-ui custom path
 springdoc:
   swagger-ui:
