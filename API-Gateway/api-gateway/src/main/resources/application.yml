@@ -5,9 +5,36 @@ spring:
   application:
     name: gateway
   cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
     config:
       profile: default
+      uri: http://localhost:8600
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: web
+          uri: lb://web
+          predicates:
+            - Path=/v1/api/**
+#        - id: localidades
+#          uri: lb://localidades
+#          predicates:
+#            - Path=/v1/api/localidades/**
+#        - id: provincias
+#          uri: lb://provincias
+#          predicates:
+#            - Path=/v1/api/provincias/**
 
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 eureka:
   client:
