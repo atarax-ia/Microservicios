@@ -1,5 +1,41 @@
+server:
+  port: 8100
+
 spring:
   jpa:
     hibernate:
       ddl-auto: update
 #      show-sql: true
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/localizaciones
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8600
+      user: root
+      password: s3cr3t
+  boot:
+    admin:
+      client:
+        url: http://localhost:8400
+
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+# eureka server
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8300/eureka/
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
