@@ -1,7 +1,9 @@
-#server:
-#  port: 8200
+server:
+  port: 8200
 
 spring:
+  application:
+    name: localidades
   jpa:
     hibernate:
       ddl-auto: update
@@ -11,15 +13,14 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-  application:
-    name: localidades
   cloud:
     config:
-      uri: http://localhost:8300/
+      enabled: true
+      uri: http://localhost:8300
       user: root
       password: s3cr3t
 
-## swagger-ui custom path
-#springdoc:
-#  swagger-ui:
-#    path: /swagger-ui.html
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
