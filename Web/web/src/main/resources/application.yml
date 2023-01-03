@@ -26,3 +26,23 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8300/eureka/
+
+# circuit-breaker
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+
+resilience4j.timelimiter:
+  configs:
+    default:
+      timeoutDuration: 10s
+      cancelRunningFuture: true
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
