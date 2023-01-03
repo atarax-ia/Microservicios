@@ -16,7 +16,7 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8300
+      uri: http://localhost:8600
       user: root
       password: s3cr3t
   boot:
