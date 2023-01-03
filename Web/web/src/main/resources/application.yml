@@ -15,6 +15,16 @@ app:
 spring:
   application:
     name: web
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8300
+      user: root
+      password: s3cr3t
+  boot:
+    admin:
+      client:
+        url: http://localhost:8400
 
 # swagger-ui custom path
 springdoc:
