@@ -1,44 +1,6 @@
-server:
-  port: 8500
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8300/eureka/
-
 spring:
   application:
     name: gateway
   cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: web
-          uri: lb://web
-          predicates:
-            - Path=/v1/api/**
-        - id: localidades
-          uri: lb://localidades
-          predicates:
-           - Path=/v1/api/localidades/**
-        - id: provincias
-          uri: lb://provincias
-          predicates:
-           - Path=/v1/api/provincias/**
     config:
-      uri: http://localhost:8600
-      username: root
-      password: s3cr3t
-  boot:
-    admin:
-      client:
-        url: http://localhost:8400
-
-# actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+      profile: default
