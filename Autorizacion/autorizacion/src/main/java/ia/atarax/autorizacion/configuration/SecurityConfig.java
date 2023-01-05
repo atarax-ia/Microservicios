@@ -48,11 +48,11 @@ public class SecurityConfig {
         http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
                 .oidc(Customizer.withDefaults());
 
-        http.exceptionHandling(
-                e -> e.authenticationEntryPoint(
-                        new LoginUrlAuthenticationEntryPoint("/login")
-                )
-        );
+//        http.exceptionHandling(
+//                e -> e.authenticationEntryPoint(
+//                        new LoginUrlAuthenticationEntryPoint("/login")
+//                )
+//        );
 
         return http.build();
     }
@@ -71,7 +71,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         var user = User.withUsername("user")
                 .password("pass")
-                .authorities("USER")
+                .authorities("read")
                 .build();
 
         return new InMemoryUserDetailsManager(user);
@@ -89,7 +89,7 @@ public class SecurityConfig {
                 .clientSecret("secret")
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
-                .redirectUri("localhost:8080/login/oauth2/code/")
+                //.redirectUri("localhost:8080/login/oauth2/code/")
                 .redirectUri("https://springone.io/authorized")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
