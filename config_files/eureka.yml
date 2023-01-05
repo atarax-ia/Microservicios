@@ -1,0 +1,21 @@
+server:
+  port: 8300
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    include:
+      show-details: always
