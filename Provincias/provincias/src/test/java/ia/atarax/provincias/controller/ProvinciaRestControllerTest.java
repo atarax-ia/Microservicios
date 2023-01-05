@@ -196,7 +196,7 @@ class ProvinciaRestControllerTest {
         // Given:
         String busqueda = "Zamora";
         Provincia p = new Provincia(id, "ZA", "Zamora");
-        List<Provincia> provinciaList = Arrays.asList(p);
+        List<Provincia> provinciaList = List.of(p);
 
         // When:
         when(serviceMock.buscarPorNombre(busqueda)).thenReturn(provinciaList);

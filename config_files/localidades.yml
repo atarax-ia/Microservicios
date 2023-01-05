@@ -6,21 +6,30 @@ spring:
     hibernate:
       ddl-auto: update
 #      show-sql: true
+
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/localizaciones
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   cloud:
     config:
       enabled: true
       uri: http://localhost:8600
       user: root
       password: s3cr3t
+
   boot:
     admin:
       client:
         url: http://localhost:8400
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
 
 # swagger-ui custom path
 springdoc:
