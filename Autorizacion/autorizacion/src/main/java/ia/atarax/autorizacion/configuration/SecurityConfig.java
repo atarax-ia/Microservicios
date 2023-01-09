@@ -81,7 +81,8 @@ public class SecurityConfig {
         UserDetails userDetails = User.withDefaultPasswordEncoder()
                 .username("user")
                 .password("password")
-                .roles("USER")
+                .authorities("read")
+                //.roles("USER")
                 .build();
 
         return new InMemoryUserDetailsManager(userDetails);
@@ -91,14 +92,16 @@ public class SecurityConfig {
     // An instance of RegisteredClientRepository for managing clients.
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("messaging-client")
-                .clientSecret("{noop}secret")
+                .clientId("client")
+                .clientSecret("secret")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .redirectUri("http://127.0.0.1:8080/login/oauth2/code/messaging-client-oidc")
-                .redirectUri("http://127.0.0.1:8080/authorized")
+                //.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+                //.redirectUri("http://127.0.0.1:9000/login/oauth2/code/messaging-client-oidc")
+                //.redirectUri("http://127.0.0.1:9000/authorized")
+                .redirectUri("http://127.0.0.1:9000/oauth2/authorize")
+                .redirectUri("https://springone.io/authorized")
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
                 .scope("read")

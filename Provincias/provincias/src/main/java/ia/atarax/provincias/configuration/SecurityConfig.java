@@ -22,14 +22,13 @@ public class SecurityConfig {
         // @formatter:off
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers(HttpMethod.GET, "/v1/api/provincias/**").hasAuthority("read")
-                        .anyRequest().permitAll()
+                        .requestMatchers("/login/**").permitAll()
+                        .requestMatchers("/oauth2/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/v1/api/provincias/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/api/provincias/**").hasAuthority("write")
-                        .anyRequest().authenticated()
                         .requestMatchers(HttpMethod.PUT, "/v1/api/provincias/**").hasAuthority("write")
-                        .anyRequest().authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/v1/api/provincias/**").hasAuthority("write")
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
         // @formatter:on

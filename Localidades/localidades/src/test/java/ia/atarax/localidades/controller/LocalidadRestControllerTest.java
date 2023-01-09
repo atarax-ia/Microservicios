@@ -23,8 +23,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;
 
 // Se desactiva si al lanzarlo: Goals = clean install -DENV=test :
-@DisabledIfEnvironmentVariable(named = "ENV", matches = "test")
+
 @Tag("bbdd_mysql")
+@DisabledIfEnvironmentVariable(named = "ENV", matches = "test")
 @TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
