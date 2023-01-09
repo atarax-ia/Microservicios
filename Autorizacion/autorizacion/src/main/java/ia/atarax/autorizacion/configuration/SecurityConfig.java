@@ -95,18 +95,13 @@ public class SecurityConfig {
                 .clientId("client")
                 .clientSecret("secret")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+                .scope(OidcScopes.OPENID)
+                .scope(OidcScopes.PROFILE)
+                .redirectUri("https://springone.io/authorized")
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 //.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                //.redirectUri("http://127.0.0.1:9000/login/oauth2/code/messaging-client-oidc")
-                //.redirectUri("http://127.0.0.1:9000/authorized")
-                .redirectUri("http://127.0.0.1:9000/oauth2/authorize")
-                .redirectUri("https://springone.io/authorized")
-                .scope(OidcScopes.OPENID)
-                .scope(OidcScopes.PROFILE)
-                .scope("read")
-                .scope("write")
-                .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+                //.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
                 .build();
 
         return new InMemoryRegisteredClientRepository(registeredClient);
