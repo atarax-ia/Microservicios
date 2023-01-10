@@ -1,0 +1,81 @@
+version: "1.0"
+
+services:
+  database:
+    build: ./
+    environment: 
+      MYSQL_DATABASE: localizaciones
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  configuracion:
+    build: ./Configuracion
+    container_name: configuracion
+    ports:
+      - "8600:8600"
+
+  eureka:
+    build: ./Eureka
+    container_name: eureka
+    ports:
+      - "8300:8300"
+
+  administrador:
+    build: ./Administrador
+    container_name: administrador
+    ports:
+      - "8400:8400"
+
+  api-gateway:
+    build: ./API-Gateway
+    container_name: api-gateway
+    ports:
+      - "8500:8500"
+
+  autorizacion:
+    build: ./Autorizacion
+    container_name: autorizacion
+    ports:
+      - "9000:9000"
+
+  web:
+    build: ./Web
+    container_name: web
+    ports:
+      - "8000:8000"
+    depends_on:
+      - configuracion
+      - eureka
+      - administrador
+      - database
+
+  provincias:
+    build: ./Provincias
+    container_name: provincias
+    ports:
+      - "8100:8100"
+    depends_on:
+      - configuracion
+      - eureka
+      - administrador
+      - database
+      - autorizacion
+      - web
+
+  localidades:
+    build: ./Localidades
+    container_name: localidades
+    ports:
+      - "8200:8200"
+    depends_on:
+      - configuracion
+      - eureka
+      - administrador
+      - database
+      - autorizacion
+      - web
