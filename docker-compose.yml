@@ -24,6 +24,8 @@ services:
     container_name: eureka
     ports:
       - "8300:8300"
+    depends_on:
+      - configuracion
 
   administrador:
     build: ./Administrador

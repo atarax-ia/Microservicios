@@ -5,14 +5,12 @@ FROM openjdk:17-jdk-alpine
 
 ENV APP_NAME localidades
 
-CMD  cd ${APP_NAME}/ && ./mvnw package
+ADD /${APP_NAME} ./
 
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
+RUN ./mvnw clean package
+RUN cp /target/${APP_NAME}-0.0.1-SNAPSHOT.jar /target/app.jar
 
 ARG PORT=8200
 EXPOSE ${PORT}
 
-ARG JAR_FILE=${APP_NAME}/target/*.jar
-COPY ${JAR_FILE} /app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/target/app.jar"]
